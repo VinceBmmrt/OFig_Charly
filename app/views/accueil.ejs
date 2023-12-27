@@ -1,0 +1,66 @@
+<%- include('partials/header.ejs') %>
+
+<div class="container container-main">
+  <div class="row">
+    <div class="col-lg-3">
+      <h1 class="my-4">O'Fig</h1>
+
+      <h5>Catégories</h5>
+      <div class="list-group">
+        <% for (const cate of categories) {%>
+        <a
+          class="list-group-item d-flex justify-content-between align-items-center"
+          href="#"
+        >
+          <%= cate.name %>
+          <span class="badge badge-primary badge-pill"><%= cate.count %></span>
+        </a>
+
+        <% } %>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <div class="row">
+        <% for (const fig of figurines) { %>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100">
+            <a href="/article/<%= fig.id %>">
+              <img
+                class="card-img-top"
+                src="/images/<%= fig.name.toLowerCase() %>.png"
+                alt=""
+              />
+              <div
+                class="badge-category badge badge-pill badge-<%=fig.category.toLowerCase()%>"
+              >
+                <%= fig.category %>
+              </div>
+            </a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href="/article"> <%= fig.name %> </a>
+              </h4>
+              <h5><%= fig.price %></h5>
+              <p class="card-text"><%= fig.description %></p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted"
+                ><%= fig.note_moyenne.toFixed(2) %></small
+              >
+              <a href="/addFavoris/<%= fig.id %>" class="link-add-bookmarks"
+                >+ Ajouter aux favoris</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <% } %>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.col-lg-9 -->
+  </div>
+  <!-- /.row -->
+</div>
+
+<%- include('partials/footer.ejs') %>
